@@ -7,12 +7,9 @@ export class ContaCorrente extends Conta{
         ContaCorrente.numeroDeContas += 1 
     }
 
+    //Sobrescreve o comportamento de sacar
     sacar(valor){
-        let taxa = 1.1;
-        const valorSacado = taxa * valor;
-        if(this._saldo >= valorSacado){
-            this._saldo -= valorSacado
-            return valorSacado
-        }
+        const taxa = 1.1;
+        return this._sacar(valor, taxa)
     }
 }
