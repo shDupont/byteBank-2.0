@@ -1,7 +1,9 @@
 import { Cliente } from "./Cliente.js";
-import { Conta } from "./Conta.js";
-import { ContaCorrente } from "./ContaCorrente.js";
-import { ContaPoupanca } from "./ContaPoupanca.js";
+import { ContaCorrente } from "./Contas/ContaCorrente.js";
+import { ContaPoupanca } from "./Contas/ContaPoupanca.js";
+import { Gerente } from "./Funcionarios/Gerente.js";
+import { Diretor } from "./Funcionarios/Diretor.js";
+import { SistemaAutenticacao } from "./SistemaAutenticacao.js";
 
 // Conta do Gustavo
 const clienteGustavo = new Cliente('Gustavo Dupont', '391.391.391-76')
@@ -29,3 +31,19 @@ contaLeticia.sacar(100)
 console.log(contaLeticia)
 
 // const contaAlice = new Conta(clienteLeticia, 1000, 5)
+
+const diretor = new Diretor("Rodrigo", 1000, 1000000000)
+const gerente = new Gerente("Ricardo", 5000, 4544542125)
+diretor.cadastrarSenha("123456789")
+gerente.cadastrarSenha("12345")
+
+const diretorEstaLogado = SistemaAutenticacao.login(diretor, "123456789")
+const gerenteEstaLogado = SistemaAutenticacao.login(gerente, "12345")
+console.log(diretorEstaLogado)
+console.log(gerenteEstaLogado)
+
+//Polimorfismo::::::
+//Diferentes objetos, classes, sendo tratadas da mesma forma. 
+clienteLeticia.cadastrarSenha("12345")
+const clienteEstaLogado = SistemaAutenticacao.login(clienteLeticia, "12345")
+console.log(clienteEstaLogado)
